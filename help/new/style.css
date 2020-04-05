@@ -1,0 +1,54 @@
+body{
+    background-image: url(images/bgPic.jpg);
+    background-repeat:no-repeat;
+    /*-webkit-background-size:cover;*/
+    background-size:cover;
+}
+*{
+    margin:0px;
+    padding:0px;
+}
+.menu ul{
+    list-style:none;
+    background:#e42652;
+}
+.menu ul li{
+    display:inline-block;
+}
+.menu ul li a {
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding: 15px 20px;
+        text-decoration: none
+    }
+.menu ul li a:hover {
+    background: #333;
+}
+
+.menu ul li a:focus{
+    text-decoration:none;
+}
+.toggle-menu{
+    display:none;
+    cursor:pointer;
+    padding:20px;
+    text-align:right;
+    font-size:25px;
+    color:#fff;
+}
+
+@media screen and (max-width: 600px){
+    .menu ul li{
+        display:block ;
+    }
+    .menu ul li a{
+        display:block;
+    }
+    .menu ul{
+        display:none;
+    }
+    .toggle-menu{
+        display:block;
+    }
+}

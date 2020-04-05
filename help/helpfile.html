@@ -1,0 +1,423 @@
+
+<html>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href = css/bootstrap.min.css>
+		<script src="js/jquery-3.4.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/myNewScript.js"></script>
+		
+		
+		<title>Abaqus FEA Automation</title>
+		<link rel="stylesheet" href="css/myNewStyle.css">
+		
+		
+	</head>
+	<body>
+	<div class="jumbotron text-center">
+		<h1>Abaqus FEA Automation</h1>
+		<p>Complete Reference Guide !</p> 
+	</div>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<a class="navbar-brand" href="#" id="getstart">Getting Started</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		  <ul class="navbar-nav">
+			<li class="nav-item">
+			  <a class="nav-link" href="#" id="reqfiles">Required Files</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#" id="runapp">Running App</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#" id="errhand">Error Handling</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link" href="#" id="imgsamp">Images</a>
+			</li>   
+			<li class="nav-item">
+				<a class="nav-link" href="#" id = "repsamp">PDF Report Sample</a>
+			</li> 
+		  </ul>
+		</div>  
+	</nav>
+	<div class="container">
+		  <div class="row">
+			<div class="col-sm-12 getstart">
+			
+			  <h3>Introduction</h3>
+			  <hr>
+					<ul>
+						<li> <b>Abaqus FEA Automation App</b> is an <b>automation</b> of the finite element analysis of the bitbody starting 
+							from importing the CAD model to the generation of FEA report  
+						required for the structural qualification of the Bit Design.</li>
+					
+							<br>
+						
+						<li>This app aids in building the FEA model, solving it and writing it to the FEA report at the click of a button and eliminates the earlier time consuming process 
+							of accessing simulation results through a remote access to the Linux server. </li>
+					</ul>
+					<h3>Invoke the App</h3>
+					<hr>
+					<ul>
+						<li> To invoke this app open a terminal in your abaqus working directory and type <b>fearep</b> and press enter.
+							Once done the app shows up as shown below.
+								</li>
+								<br>
+						<figure>
+							<img class="img-fluid" alt="app-gui" src="help_images/Picture1.png" >
+							<figcaption>Fig.1 - Graphical User Interface of the App.</figcaption>
+							</figure>
+							<br><br>
+		
+						<li> The GUI of this app is a form with fields required for the FEA and writing the Report.	As an example, all fields are populated 
+							with some default entries (strings). The table below gives a brief description of the fields in the form. </li>
+						<br><br>
+						<div id='field-description'>
+					<h6>Table 1: Field Description</h6>
+					<table class="table">
+						<th>Field Name</th>
+						<th>Description</th>
+						<tr>
+							<td>Analyst Name</td><td>Enter the name of the Analyst/Engineer generating this report.</td>
+						</tr>
+						<tr>
+								<td>ECO Number</td><td>Enter the ECO number.</td>
+						</tr>
+						<tr>
+								<td>BIT Type:</td><td>Specify the Bit type</td>
+						</tr>
+						<tr>
+							<td>BIT Size:</td><td>Specify the Bit size</td>
+					</tr>
+						<tr>
+								<td>BIT BOM</td><td>Enter the BIT BOM.</td>
+						</tr>
+						<tr>
+								<td>GEMS Doc</td><td>Create a GeMS Record and enter the number.</td>
+						</tr>
+						<tr>
+								<td>GEMS Rev</td><td>Enter the appropriate revision number</td>
+						</tr>
+						<tr>
+								<td>DES File Name</td><td>Enter the appropriate DES file number without extension. Case Sensitive field.</td>
+						</tr>
+						<tr>
+								<td>PROE_StepFile_Name</td><td>Enter the appropriate Step file number without extension. Case Sensitive field.</td>
+						</tr>
+						<tr>
+								<td>Browse Utlity Files Folder</td><td>Browse to the utility files folder generated from ideas project</td>
+						</tr>
+						
+						<tr>
+								<td>Material</td><td>Choose appropriate material as used in FEA from the 6 options provided.</td>
+						</tr>
+						<tr>
+								<td>Formation</td><td>Enter the type of formation. Required only for report.</td>
+						</tr>
+						<tr>
+								<td>WOB</td><td>Enter the Weight on Bit (klbf). Required only for report.</td>
+						</tr>
+						<tr>
+								<td>Total RPM</td><td>Enter the total RPM. Required only for report.</td>
+						</tr>
+					</table>
+						</div>
+
+						<div id='material-description'>
+					<h6>Table 2: Material Strength and limit for matrix material</h6>
+					<table class="table">
+							<th>Material Name</th>
+							<th>Material Ultimate Strength (ksi)</th>
+							<th>Limit Strength (ksi, 50% Material Strength)</th>
+							<tr>
+								<td>GM6+GB1</td><td>67.5</td><td>33.75</td>
+							</tr>
+							<tr>
+								<td>GM6+GB25</td><td>77.5</td><td>38.75</td>
+							</tr>
+							<tr>
+								<td>GM19+GB1</td><td>77.5</td><td>38.75</td>
+							</tr>
+					</table>
+					<h6>Table 3: Material Strength and limit for steel material</h6>
+					<table class="table">
+							<th>Material Name</th>
+							<th>Material Ultimate Strength (ksi)</th>
+							<th>Limit Strength (ksi, 80% Material Strength)</th>
+							<tr>
+								<td>4130E</td><td>80</td><td>64</td>
+							</tr>
+							<tr>
+								<td>4140</td><td>110</td><td>88</td>
+							</tr>
+							<tr>
+								<td>4130M</td><td>120</td><td>96</td>
+							</tr>
+					</table>
+						</div>
+					
+					</ul>
+			</ol>
+			<br><br>
+			
+			</div>
+			<div class="col-sm-12 reqfiles">
+					<h3 >Run FEA & Generate Report</h3>
+					<hr>	
+					Files required for running the application have been tabulated below,
+					
+					<br><br>
+					<table class="table">
+						<th>File Name Name</th>
+						<th>Description</th>
+						<th>User Action</th>
+						<tr>
+							<td>ProE Step file (*.stp)</td><td>CAD File of Bit Body in step format </td><td>Yes. Copy in current directory</td>
+						</tr><tr>
+							<td>DES file (*.des)</td><td>ProE parameter data file</td><td>Yes. Copy in current directory</td>
+						</tr><tr>
+							<td>Utility Files Folder</td><td>Generated from Ideas Simulation.</td><td>Yes. Browse to location.</td>
+						</tr>
+					</table>
+					<br>
+					<h3 >Generate Report Only</h3>
+					<hr>
+					Files required for running the application have been tabulated below,
+					<br><br>
+					<table class="table">
+						<th>File Name Name</th>
+						<th>Status</th>
+						<th>User Action</th>
+						<tr>
+							<td>Mesh Image (for eg.- MESH_66593a00_COT35.png)</td><td>Expected in Current Directory (From Macro <b>"o01_printMesh.py"</b> of script generator)</td><td>None</td>
+						</tr>
+						<tr>
+							<td>Constraint Image (for eg.- CSTR_66593a00_COT35.png)</td><td>Expected in Current Directory (From Macro <b>"o02_printConstraint.py"</b> of script generator)</td><td>None</td>
+						</tr>
+						<tr>	
+							<td>Max. Principal Stress Image (for eg.- MaxP66593a00_COT35.png)</td><td>Expected in Current Directory (From Macro <b>"o04_printStressMaxP.py"</b> of script generator)</td><td>None</td>
+						</tr>
+						<tr>
+							<td>maxPstress.txt</td><td>Expected in Current Directory (From Macro <b>"o04_printStressMaxP.py"</b> of script generator)</td><td>None</td>
+						</tr><tr>
+							<td>Bit Body Face Image (BitBodyFaceView.png)</td><td>Expected in Current Directory (From Macro <b>"o04_printStressMaxP.py"</b> of script generator)</td><td>None</td>
+						</tr><tr>
+							<td>Bit Body Right Image (BitBodyRightView.png)</td><td>Expected in Current Directory (From Macro <b>"o04_printStressMaxP.py"</b> of script generator)</td><td>None</td>
+						</tr><tr>
+							<td>cutterfcut_bk.txt</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>cutterfn_bk.txt</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>BHA (for eg.-bha.png)</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>Well (for eg.-bha.png)</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>Transverse Acceleration (for eg.- ax_bit_1_1.png)</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>Transverse Acceleration (for eg.- ay_bit_1_1.png)</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>WOB (for eg.-wob.png)</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr><tr>
+							<td>WOB (Box & Whisker Plot) (for eg.-wob_bk.png)</td><td>Expected in <i>utility_files</i> Directory</td><td>None</td>
+						</tr>
+					</table>
+			</div>
+			<div class="col-sm-12 runapp">
+					<h3 >Running App</h3>
+					<hr>
+	
+				<ol>
+					<li>Open a New Folder for your Project and copy the required CAD and DES or CFB file here.</li>
+					<li>Open a new terminal from this folder and type "<b>autofea</b>" this will invoke the app
+						 </li>
+					<li>Fill in the fields with adequate information as listed in <button id='field'>Fields Table</button>
+						<div class = 'field-description'>
+						</div></li>
+					<li>Browse to the utility_files folder generated from ideas simulation</li>
+					<li>Enter the DES or CFB file and CAD file names correctly.</li>
+					<li>Select appropriate material for analysis <button id='materials'>Materials Table</button>
+						<div class = 'material-description'>
+						</div></li>
+					<br>
+					<figure>
+							<img class="img-fluid" alt="app-gui" src="help_images/Picture1.png" >
+							<figcaption>Fig.1 - Graphical User Interface of the App.</figcaption>
+					</figure>
+					<li>Press "Run FEA & Generate Report". This will automatically invoke Abaqus and start building the FEA model. </li>
+					<li>Once the FE Model is ready it will automatically fire the run with 4 processors.</li>
+					<br>
+					<figure>
+						<img class="img-fluid" alt="Job Fired" src="help_images/Job-Fired.png" >
+						<figcaption>Fig.2 - Job Fired Successfully.</figcaption>
+					</figure>
+					<li>On completion of the job run, the post processing script <strong>o4-o5.py</strong> will automatically run and extract
+					results required for report generation.</li>
+					<li>Close Abaqus. You will be prompted to save it. It is a good practice to save this cae file for your backup. 
+						After closing abaqus the control then moves back to the main GUI and report generation starts automatically</li>
+					<li>On Successful completion the user shall see a message on screen as shown below,</li>
+						<figure>
+							<img src="help_images/Picture2.png" >
+							<figcaption>Fig.3 - Successful Run Message.</figcaption>
+						</figure>	
+				</ol>
+				<h3 >Additional Notes </h3>
+				<hr>
+				<ol>	
+					<li><strong>o4-o5.py</strong> script extracts the stress plot and in addition to that 
+						writes a report file to extract max value of stress as shown in image below. <br><br>
+						<figure>
+							<img  width=60% src="help_images/maxstress.png" >
+							<figcaption>Fig.4 - "maxstress.rpt" generated by o4-o5.py script</figcaption>
+						</figure></li>	
+					
+								
+					
+					<li>The <b>RESET</b> button will load the form with preset default (sample) values </li>
+							
+					</ol>
+					<br><br>
+					<hr>
+			</div>
+			<div class="col-sm-12 errhand">		
+				<h3>Error Handling</h3>
+				<hr>
+				The app has a robust exception handling mechanism for the errors encountered during its operation. 
+				The errors can be classified in two major types<br>
+				<ul>
+						<li>Abaqus Environment Errors</li>
+						<li>Other App Errors</li>
+				</ul>
+				<h4>Abaqus Environment Errors</h4> 
+				<ol>
+					<li>
+						Most common type of error seen inside abaqus environment is <b>meshing error</b> encoutered due to failure of 
+						meshing by the Abaqus software. When viewed inside Abaqus environment using Mesh Tools it can be easily seen that
+						these erros occur due to some bad surfaces in the CAD geometry. These errors can be fixed by defeaturing the unwanted faces or edges.
+						These bad faces can be seen inside Abaqus environment from the Meshing Menu.
+						<figure>
+								<img src="help_images/failedMesh.png" >
+								<figcaption>Fig.1 - Mesh gaps/intersections as viewed in Abaqus Environment.</figcaption>
+						</figure>
+						Very often these are small surfaces or fillets which may not significant from FEA point of view and 
+						hence it is recommended that the user should try and remove these surfaces from the CAD geometry.
+					</li>
+					
+					<li>
+						The other error seen in abaqus environment is failure of Pocket set creation. 
+						Look at the figure below,
+						<br>
+						<table>
+							<tr><td>	
+								<figure>
+									<img src="help_images/badfaceset.png" >
+									<figcaption>Fig.2 - Bad or Failed Pocket Set</figcaption>
+								</figure>
+								</td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td>
+								<figure>
+										<img src="help_images/goodfaceset.png" >
+										<figcaption>Fig.3 - A Good Sample Pocket Set</figcaption>
+								</figure>
+							</td>
+							</tr>
+						</table>		
+						
+						
+					</li>		
+				</ol>
+				<h4>Other App Errors</h4> 
+				<ol>
+					<li>Mostly errors occur due to a missing data
+					like image files or other required files </li>
+					<li>Inadequate user permissions to read/write/execute into the working directory</li>
+					
+				
+					<li>Missing file errors are easily handled by the app’s robust exception handling mechanism.</li>
+						<figure>
+						<img src="help_images/MissingFilesWarning.png" >
+						<figcaption>Fig.4 - Missing File Warning Message.</figcaption>
+						</figure>
+				
+						
+					<li>In case there is a problem with printing the pdf report
+							the app will show a warning about missing information (like blank slide) as below,	</li>
+							<figure>
+								<img src="help_images/warningMessage.png" >
+								<figcaption>Fig.5 - Warning message due to problem with pdf generation</figcaption>
+							</figure>	
+					<li>Please send your queries to <a href='mailto:cpchelp@slb.com'>cpchelp@slb.com</a>with <b>autofea</b> in subject line.</li>
+					<li>Please attach the <b>logfile.txt</b> and <b>fea.cfg</b> generated by the app in your current directory along with the email. </li>	
+				</ol>
+				<br><br>
+				<hr>
+			</div>
+			<div class="col-sm-12 imgsamp">
+				<h3 >Sample Images</h3>
+			<hr>
+			<ol>
+					<h4><li>BitBodyFaceView</li></h4>
+					<figure>
+						<img width="350px" height="300px" src="help_images/BitBodyFaceView.png" >
+						<figcaption>BitBodyFaceView.png</figcaption>
+					</figure>	
+					<hr>	  
+					<h4><li>BitBodyRightView</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/BitBodyRightView.png" >
+						<figcaption>BitBodyRightView.png</figcaption>
+					</figure>
+					<hr>
+					<h4><li>BHA</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/BHA.png" >
+						<figcaption>bha.png</figcaption>
+					</figure>
+					<hr>
+					<h4><li>Well</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/Well.png" >
+						<figcaption>well.png</figcaption>
+					</figure>
+					<hr>
+					<h4><li>CutterForce</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/CutterForce.png" >
+						<figcaption>CutterForce.png</figcaption>
+					</figure>
+					<hr>
+					<h4><li>Mesh</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/Mesh_66593a00_COT35.png" >
+						<figcaption>MESH_66593a00_COT35.png</figcaption>
+					</figure>
+					<hr>
+					<h4><li>Constraints</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/CSTR_66593a00_COT35.png" >
+						<figcaption>CSTR_66593a00_COT35.png</figcaption>
+					</figure>
+					<hr>
+					<h4><li>Max. Principal Stress</h4></li>
+					<figure>
+						<img width="350px" height="300px" src="help_images/MaxP66593a00_COT35.png" >
+						<figcaption>MaxP66593a00_COT35.png</figcaption>
+					</figure>
+					<hr>
+
+			</ol>
+			</div>
+			<div class="col-sm-12 repsamp">
+				<h3>FEA Report Illustration</h3>
+				<embed src="pdf-report.pdf" width="1000px" height="1000px" />
+			</div>
+		  </div>
+	</div>
+	</body>
+</html>
